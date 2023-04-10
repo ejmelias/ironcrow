@@ -18,7 +18,6 @@ function Crow({ index=0, z=0, speed=1 }) {
         rZ: Math.random() * Math.PI
     })
     
-
     useFrame((state, dt) => {
 
         if (dt < 0.1) ref.current.position.set(index === 0 ? 0 : data.x * width, (data.y -= dt * speed), -z);
