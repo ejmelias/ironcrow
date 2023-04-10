@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { useRef, useState } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
-import { useGLTF, Instance, Instances, useMatcapTexture } from '@react-three/drei';
+import { useGLTF, Instance, Instances, useMatcapTexture, useTexture } from '@react-three/drei';
 import { DepthOfField, EffectComposer } from '@react-three/postprocessing';
 
 function Crow({ index=0, z=0, speed=1 }) {
@@ -40,12 +40,13 @@ function Crow({ index=0, z=0, speed=1 }) {
 function Crows({ speed = 1, count = 80, depth = 80, easing = (x) => Math.sqrt(1 - Math.pow(x - 1, 2)) }) {
 
     const { nodes } = useGLTF('./crow.glb');
-    const [matcap] = useMatcapTexture('312C34_A2AAB3_61656A_808494')
+    //const [matcap] = useMatcapTexture('312C34_A2AAB3_61656A_808494')
+    const matcapTexture = useTexture('./matcap.png');
 
     return (
           <>
             <Instances geometry={nodes.crow.geometry} >
-                <meshMatcapMaterial matcap={matcap} />
+                <meshMatcapMaterial matcap={matcapTexture} />
                 <group>
                     {Array.from({ length: count }, (_, i) => (<Crow key={i} index={i} speed={speed} z={Math.round(easing(i / count) * depth)} /> ))}
                 </group>
