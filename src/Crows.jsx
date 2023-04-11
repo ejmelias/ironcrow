@@ -39,9 +39,9 @@ function Crow({ index=0, z=0, speed=1 }) {
 function Crows({ speed = 1, count = 80, depth = 80, easing = (x) => Math.sqrt(1 - Math.pow(x - 1, 2)) }) {
 
     const { nodes } = useGLTF('./crow.glb');
-    //const [matcap] = useMatcapTexture('312C34_A2AAB3_61656A_808494')
+    //const [matcapTexture] = useMatcapTexture('8B892C_D4E856_475E2D_47360A')
     const matcapTexture = useTexture('./matcap.png');
-
+    
     return (
           <>
             <Instances geometry={nodes.crow.geometry} >
